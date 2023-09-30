@@ -1,37 +1,23 @@
 #include "sort.h"
 
-void insertion_sort_list(listint_t **list)
+void selection_sort(int *array, size_t size)
 {
-    if (list == NULL || *list == NULL || (*list)->next == NULL)
-        return;
+	size_t i, j, tmp, ABC;
 
-    listint_t *current = (*list)->next;
-    listint_t *head = *list;
+	for (i = 0; i < size - 1; i++)
+	{
+		ABC = i;
+		for (j = i + 1; j < size; j++)
+			if (array[j] < array[ABC])
+				ABC = j;
 
-    while (current != NULL)
-    {
-        listint_t *inner_current = current;
+		if (ABC != i)
+		{
+			tmp = array[i];
+			array[i] = array[ABC];
+			array[ABC] = tmp;
 
-        while (inner_current->prev != NULL && inner_current->n < inner_current->prev->n)
-        {
-            listint_t *prev_node = inner_current->prev;
-            inner_current->prev = prev_node->prev;
-            prev_node->next = inner_current->next;
-
-            if (inner_current->next != NULL)
-                inner_current->next->prev = prev_node;
-
-            inner_current->next = prev_node;
-            prev_node->prev = inner_current;
-
-            if (inner_current->prev != NULL)
-                inner_current->prev->next = inner_current;
-            else
-                head = inner_current;
-        }
-
-        current = current->next;
-    }
-
-    *list = head;
+			print_array(array, size);
+		}
+	}
 }
