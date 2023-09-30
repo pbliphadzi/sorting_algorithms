@@ -1,5 +1,5 @@
-#ifndef SORTA_H_
-#define SORTA_H_
+#ifndef SORT_H_
+#define SORT_H_
 #include <stddef.h>
 #include <stdlib.h>
 /**
